@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/signinAc"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SigninActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="240dp"
+        android:text="ĐĂNG NHẬP"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="28dp" />
+
+    <EditText
+        android:id="@+id/editTextPhone"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:ems="13"
+        android:paddingLeft="10dp"
+        android:drawableLeft="@drawable/baseline_person_outline_24"
+        android:drawablePadding="10dp"
+        android:hint="Số điện thoại"
+        android:minHeight="55dp"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ems="13"
+        android:layout_marginTop="15dp"
+        android:paddingLeft="10dp"
+        android:drawablePadding="10dp"
+        android:minHeight="55dp"
+        android:hint="Mật khẩu"
+        android:drawableLeft="@drawable/baseline_lock_open_24"
+        android:inputType="textPassword" />
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:text="Chưa có tài khoản?" />
+
+        <TextView
+            android:layout_marginLeft="7dp"
+            android:id="@+id/CTDK"
+            android:textColor="@color/pp"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:fontFamily="@font/robotobold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đăng kí ở đây!" />
+    </LinearLayout>
+
+    <Button
+        android:layout_marginTop="50dp"
+        android:id="@+id/btnLG"
+        android:layout_gravity="center"
+        android:textSize="18dp"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/white"
+        android:layout_width="170dp"
+        android:layout_height="60dp"
+        android:text="LOGIN" />
+</LinearLayout>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/signupAc"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignupActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ĐĂNG KÍ"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_marginTop="210dp"
+        android:textColor="@color/black"
+        android:textSize="28dp"/>
+
+    <EditText
+        android:id="@+id/editTextPhoneDK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="14"
+        android:layout_gravity="center"
+        android:paddingLeft="10dp"
+        android:layout_marginTop="40dp"
+        android:drawableLeft="@drawable/baseline_person_outline_24"
+        android:drawablePadding="10dp"
+        android:hint="Số điện thoại"
+        android:minHeight="55dp"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/editTextPasswordDK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ems="14"
+        android:layout_marginTop="15dp"
+        android:paddingLeft="10dp"
+        android:minHeight="55dp"
+        android:drawablePadding="10dp"
+        android:hint="Mật khẩu"
+        android:drawableLeft="@drawable/baseline_lock_outline_24"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/editTextPasswordDK2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ems="14"
+        android:layout_marginTop="15dp"
+        android:paddingLeft="10dp"
+        android:minHeight="55dp"
+        android:drawablePadding="10dp"
+        android:hint="Nhập lại mật khẩu"
+        android:drawableLeft="@drawable/baseline_lock_open_24"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:id="@+id/textThongBao"
+        android:layout_marginTop="15dp"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="" />
+
+    <Button
+        android:id="@+id/btnSG"
+        android:layout_gravity="center"
+        android:textSize="18dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/white"
+        android:layout_width="170dp"
+        android:layout_height="60dp"
+        android:text="SIGN UP" />
+
+    <LinearLayout
+        android:layout_marginTop="135dp"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:text="Đã có tài khoản?" />
+
+        <TextView
+            android:layout_marginLeft="7dp"
+            android:id="@+id/CTDN"
+            android:textColor="@color/pp"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:fontFamily="@font/robotobold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quay lại trang đăng nhập!" />
+    </LinearLayout>
+
+</LinearLayout>

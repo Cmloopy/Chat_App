@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bottom_chat"
+        android:title="Đoạn chat"
+        android:icon = "@drawable/baseline_chat_bubble_24" />
+    <item
+        android:id="@+id/bottom_listfriend"
+        android:title="Đang hoạt động"
+        android:icon = "@drawable/baseline_list_alt_24" />
+    <item
+        android:id="@+id/bottom_addfriend"
+        android:title="Gợi ý"
+        android:icon = "@drawable/baseline_person_add_24" />
+</menu>
