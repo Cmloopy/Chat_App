@@ -69,7 +69,7 @@ class ChatFragment : Fragment(), ListChatFragment.OnItemClickListener {
                                                 val tthd = frDoc.getBoolean("active") ?: false
 
                                                 // Thêm vào danh sách chat
-                                                listChat.add(item_chat_fragment(idFriend, url, tthd, fullname, latestMessage))
+                                                listChat.add(item_chat_fragment(idFriend, url, tthd, fullname, latestMessage, document.id))
                                             }
                                         }
                                         .addOnFailureListener { e ->
@@ -86,7 +86,6 @@ class ChatFragment : Fragment(), ListChatFragment.OnItemClickListener {
 
                     // Đợi tất cả các tasks hoàn thành trước khi gọi updateAdapter
                     Tasks.whenAllComplete(tasks).addOnCompleteListener {
-                        updateAdapter(listChat) // Cập nhật adapter với dữ liệu chat
                         Log.d("test", listChat.toString())
                     }
                 } else {
@@ -98,7 +97,8 @@ class ChatFragment : Fragment(), ListChatFragment.OnItemClickListener {
             }
 
         // Hàm cập nhật Adapter với danh sách kết quả
-
+        listChat.add(item_chat_fragment("AzE7K7xNKbU8J5qdqlQC","AzE7K7xNKbU8J5qdqlQC/anh_dai_dien/d212436b-c7c2-426b-9924-2c95802b0bbd.jpg", true, "Chau Le", "messs testtttt", "qB9u5xKZAn2AgCeKg3DO"))
+        updateAdapter(listChat) // Cập nhật adapter với dữ liệu chat
 
         return binding.root
     }
@@ -119,6 +119,7 @@ class ChatFragment : Fragment(), ListChatFragment.OnItemClickListener {
         val intent = Intent(requireContext(), ChatActivity::class.java)
         intent.putExtra("id_user",id_user)
         intent.putExtra("id_friend",chat.id_friend)
+        intent.putExtra("id_chat", chat.id_chat)
         startActivity(intent)
     }
 }

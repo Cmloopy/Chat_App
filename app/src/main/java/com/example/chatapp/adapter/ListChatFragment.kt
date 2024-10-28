@@ -51,6 +51,9 @@ class ListChatFragment(
                     // Xử lý khi có lỗi xảy ra trong quá trình tải ảnh
                 }
             }
+            itemView.setOnClickListener{
+                clickListener.onItemClick(chat)
+            }
         }
     }
 

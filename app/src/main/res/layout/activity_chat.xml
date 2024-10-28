@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/chatAc"
@@ -12,10 +12,7 @@
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="73dp"
-        app:layout_constraintBottom_toTopOf="@+id/viewTN"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        >
 
         <ImageView
             android:id="@+id/btnback1"
@@ -68,9 +65,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/viewTN"
         android:layout_width="match_parent"
-        android:layout_height="755dp"
+        android:layout_height="750dp"
         android:backgroundTint="@color/nen"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout" />
+         />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -78,9 +75,7 @@
         android:layout_height="65dp"
         android:layout_gravity="bottom"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        >
 
         <ImageView
             android:id="@+id/guianh"
@@ -121,4 +116,4 @@
             android:src="@drawable/baseline_send_24" />
 
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
