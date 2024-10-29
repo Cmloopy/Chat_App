@@ -21,6 +21,8 @@ import com.google.firebase.firestore.firestore
 
 private val db = Firebase.firestore
 private var id_user = ""
+private val chatIds = mutableListOf<String>()
+
 private lateinit var binding: FragmentChatBinding
 class ChatFragment : Fragment(), ListChatFragment.OnItemClickListener {
     override fun onCreateView(
@@ -33,72 +35,10 @@ class ChatFragment : Fragment(), ListChatFragment.OnItemClickListener {
         if(id != null){
             id_user = id
         }
-
         val listChat = mutableListOf<item_chat_fragment>() // Danh sách để lưu dữ liệu chat
 
-        // Lấy các document từ collection "chat" mà chứa id_user trong mảng id
-        db.collection("chat")
-            .whereArrayContains("id", id_user)
-            .get()
-            .addOnSuccessListener { documents ->
-                if (!documents.isEmpty) {
-                    val tasks = mutableListOf<Task<*>>() // Danh sách lưu các Task để chờ hoàn tất
-
-                    for (document in documents) {
-                        val dataMap = document.data
-                        val ids = dataMap["id"] as List<String> // Mảng id trong document
-
-                        // Lấy id của người bạn (id không phải id_user)
-                        val idFriend = ids.firstOrNull { it != id_user } ?: continue
-
-                        // Tạo task lấy tin nhắn mới nhất
-                        val messageTask = document.reference.collection("message")
-                            .orderBy("timestamp", Query.Direction.DESCENDING)
-                            .limit(1)
-                            .get()
-                            .addOnSuccessListener { messageSnapshot ->
-                                if (!messageSnapshot.isEmpty) {
-                                    val latestMessage = messageSnapshot.documents.firstOrNull()?.getString("content") ?: ""
-
-                                    // Tạo task lấy thông tin bạn từ collection "user"
-                                    val userTask = db.collection("user").document(idFriend).get()
-                                        .addOnSuccessListener { frDoc ->
-                                            if (frDoc.exists()) {
-                                                val url = frDoc.getString("url_anhdd").orEmpty()
-                                                val fullname = frDoc.getString("fullname") ?: ""
-                                                val tthd = frDoc.getBoolean("active") ?: false
-
-                                                // Thêm vào danh sách chat
-                                                listChat.add(item_chat_fragment(idFriend, url, tthd, fullname, latestMessage, document.id))
-                                            }
-                                        }
-                                        .addOnFailureListener { e ->
-                                            Log.e("Err", "User query failed with exception: ${e.localizedMessage}")
-                                        }
-                                    tasks.add(userTask) // Thêm userTask vào danh sách
-                                }
-                            }
-                            .addOnFailureListener { e ->
-                                Log.e("Err", "Message query failed with exception: ${e.localizedMessage}")
-                            }
-                        tasks.add(messageTask) // Thêm messageTask vào danh sách
-                    }
-
-                    // Đợi tất cả các tasks hoàn thành trước khi gọi updateAdapter
-                    Tasks.whenAllComplete(tasks).addOnCompleteListener {
-                        Log.d("test", listChat.toString())
-                    }
-                } else {
-                    Log.d("Info", "No matching documents found")
-                }
-            }
-            .addOnFailureListener { e ->
-                Log.e("Err", "Query failed with exception: ${e.localizedMessage}")
-            }
-
-        // Hàm cập nhật Adapter với danh sách kết quả
-        listChat.add(item_chat_fragment("AzE7K7xNKbU8J5qdqlQC","AzE7K7xNKbU8J5qdqlQC/anh_dai_dien/d212436b-c7c2-426b-9924-2c95802b0bbd.jpg", true, "Chau Le", "messs testtttt", "qB9u5xKZAn2AgCeKg3DO"))
-        updateAdapter(listChat) // Cập nhật adapter với dữ liệu chat
+        getChatIdsByUserId(id_user) //update chatIds
+        println(chatIds)
 
         return binding.root
     }
@@ -119,7 +59,26 @@ class ChatFragment : Fragment(), ListChatFragment.OnItemClickListener {
         val intent = Intent(requireContext(), ChatActivity::class.java)
         intent.putExtra("id_user",id_user)
         intent.putExtra("id_friend",chat.id_friend)
-        intent.putExtra("id_chat", chat.id_chat)
+        intent.putExtra("id_chat", id)
         startActivity(intent)
+    }
+    fun getChatIdsByUserId(targetId: String) {
+        // Thực hiện truy vấn
+        db.collection("chat")
+            .whereArrayContains("id", targetId)
+            .addSnapshotListener { snapshots, error ->
+                if (error != null) {
+                    println("Listen failed: ${error.message}")
+                    return@addSnapshotListener
+                }
+
+                if (snapshots != null) {
+                    chatIds.clear() // Xóa danh sách cũ để cập nhật danh sách mới
+
+                    for (document in snapshots) {
+                        chatIds.add(document.id) // Lấy ID của document chứa targetId
+                    }
+                }
+            }
     }
 }
